@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  mount_devise_token_auth_for 'User', at: 'auth'
+  
+constraints subdomain: 'api' do
+  scope module: 'api' do
+    namespace :v1 do
+      resources :users
+    end
+  end
+end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
