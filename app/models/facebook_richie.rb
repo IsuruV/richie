@@ -8,7 +8,6 @@ class FacebookRichie < ApplicationRecord
                 req.headers['Content-Type'] = 'application/json'
                 req.params['recipient'] = "{ 'id': '#{user_id}' }"
                 req.params['message'] = check_for_attachment(input)
-                
         end
     end
     
