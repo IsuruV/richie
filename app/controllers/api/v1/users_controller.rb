@@ -2,11 +2,12 @@ module Api::V1
   class UsersController < ApiController
       # before_action :authenticate_user!
     def create
-       User.find_or_create_user_facebook(user_params)
+       user = User.find_or_create_user_facebook(user_params)
+       render json: { status: 200, user: user }
     end
     
-    def index
-      
+    def show
+      render json: current_user
     end
   
     private

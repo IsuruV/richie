@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   
   scope module: 'api' do
     namespace :v1 do
-      resources :users
+      resources :users, except: [:show]
+      get '/user' => 'users#show'
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.
