@@ -1,20 +1,17 @@
 module Api::V1
   class UsersController < ApiController
-
-      before_action :authenticate_user!, except: [:create]
-      
+      # before_action :authenticate_user!
     def create
-        user = User.find_or_create_user_facebook(user_params)
-        if user
-          render status: 200, json: { message: 'user created or exists', status: 200 }
-        else
-          render status: 500, json: "error creating user"
-        end
+       current_user = User.find_or_create(user_params)
     end
     
+    def index
+     
+    end
+  
     private
     def user_params
-      params.require(:user).permit(:fd_id, :name, :email, :age, :image)
+      params.require(:user).permit(:uid, :name, :email, :age, :image)
     end
     
   end

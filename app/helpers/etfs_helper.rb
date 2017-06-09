@@ -1,0 +1,2 @@
+module EtfsHelper
+end

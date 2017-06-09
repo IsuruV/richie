@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
 
+  resources :user_groups
+  resources :group_investments
+  resources :etfs
+  resources :individual_investments
+  resources :suggestions
+  resources :followers
+  resources :messages
   mount_devise_token_auth_for 'User', at: 'auth'
   
   
