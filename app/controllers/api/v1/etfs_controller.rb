@@ -1,2 +1,2 @@
-class EtfsController < ApplicationController
+class Api::V1::EtfsController < ApplicationController
 end
