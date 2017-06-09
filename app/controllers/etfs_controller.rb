@@ -1,0 +1,2 @@
+class EtfsController < ApplicationController
+end
