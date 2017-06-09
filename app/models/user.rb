@@ -4,14 +4,20 @@ class User < ActiveRecord::Base
           :recoverable, :rememberable, :trackable, :validatable,
           :omniauthable
   include DeviseTokenAuth::Concerns::User
-  
+
   has_many :messages
   has_many :suggestions
   has_many :followers
   has_many :single_investments
   has_many :user_groups
   has_many :groups, :through => :user_groups
-  
+
+  has_many :follower_connections, foreign_key: :following_id, class_name: 'Follow'
+  has_many :followers, through: :follower_connections, source: :follower
+
+  has_many :following_connections, foreign_key: :follower_id, class_name: 'Follow'
+  has_many :following, through: :following_connections, source: :following
+
   def self.find_or_create_user_facebook(user_params)
       user = self.find_by(fd_id: user_params[:fd_id], name: user_params[:name])
     if !user
@@ -22,5 +28,4 @@ class User < ActiveRecord::Base
     end
       user
   end
-
 end
