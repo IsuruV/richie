@@ -1,4 +1,4 @@
-class FollowConnectionsController < ApplicationController
+class Api::V1::FollowConnectionsController < ApplicationController
   def follow
   end
 
