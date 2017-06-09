@@ -1,25 +1,4 @@
 Rails.application.routes.draw do
-
-  resources :user_groups
-  resources :group_investments
-  resources :etfs
-  resources :individual_investments
-  resources :suggestions
-  resources :followers
-  resources :messages
-  mount_devise_token_auth_for 'User', at: 'auth'
-  
-  
-  resources :tests
-  # constraints subdomain: 'api' do
-   scope module: 'api' do
-      namespace :v1 do
-        resources :users
-        # resources :tests
-      end
-    end
-  # end
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
