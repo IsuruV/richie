@@ -7,9 +7,13 @@ module Api::V1
           render json: group_request
       end
       
-      def approve
+      def update
           approval = GroupRequest.approve_request(request_params)
           render json: approval
+      end
+      
+      def index
+          
       end
       
       private
