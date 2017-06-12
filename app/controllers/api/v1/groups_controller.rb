@@ -8,8 +8,8 @@ module Api::V1
     end
     
     def update
-        group = Group.find(id: group_params[:group_id])
-        group.update(name: group_params[:name])
+        group = find_group(group_params)
+        group.update(name: group_params[:name], description: group_params[:description])
         render json: group
     end
     
@@ -18,19 +18,19 @@ module Api::V1
     end
     
     def destroy
-        group = Group.find(id: group_params[:group_id])
+        group = find_group(group_params)
         if check_if_group_admin(group)
             group.delete
-            render json: "#{group.name} deleted"
+            render json: "#{group.name} deleted".to_json
         else
-            render json: "You do not have the access rights"
+            render json: "You do not have the access rights".to_json
         end
     end
     
     private
     
     def group_params
-        params.permit(:name, :group_id)
+        params.permit(:id, :name, :description)
     end
     
     def create_group_params
