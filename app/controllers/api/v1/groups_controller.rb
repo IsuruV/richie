@@ -19,8 +19,12 @@ module Api::V1
     
     def destroy
         group = Group.find(id: group_params[:group_id])
-        group.delete
-        render json: group
+        if check_if_group_admin(group)
+            group.delete
+            render json: "#{group.name} deleted"
+        else
+            render json: "You do not have the access rights"
+        end
     end
     
     private
@@ -28,6 +32,7 @@ module Api::V1
     def group_params
         params.permit(:name, :group_id)
     end
+    
     def create_group_params
         params.permit(:name, :description)
     end
