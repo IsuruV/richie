@@ -9,7 +9,10 @@ Rails.application.routes.draw do
       resources :users, except: [:show]
       get '/user' => 'users#show'
       
-      resources :groups
+      resources :groups do 
+        resources :messages
+      end
+      
       resources :group_requests
     end
   end

@@ -1,7 +1,10 @@
-class Api::V1::FollowConnectionsController < ApplicationController
-  def follow
-  end
+module Api::V1
+ class FollowConnectionsController < ApiController
+    def follow
+    end
 
-  def following
+    def following
+    end
+    
   end
 end
