@@ -5,4 +5,5 @@ class Group < ActiveRecord::Base
    has_many :suggestions
    has_many :group_investments
    
+   # attr_accessible :name, :description, :isPublic, :tag_list, :owner
 end
