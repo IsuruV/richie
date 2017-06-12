@@ -1,6 +1,6 @@
 module Api::V1
   class UsersController < ApiController
-      # before_action :authenticate_user!
+   
     def create
        user = User.find_or_create_user_facebook(user_params)
        

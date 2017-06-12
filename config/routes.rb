@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       get '/user' => 'users#show'
       
       resources :groups
+      resources :group_requests
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.

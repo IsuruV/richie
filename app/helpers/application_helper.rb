@@ -13,4 +13,8 @@ module ApplicationHelper
         end
         conn.resp.body
     end
+    
+    def check_if_group_admin(group)
+        current_user.in_all_groups?(group, as: 'admin')
+    end
 end

@@ -9,14 +9,18 @@ class User < ActiveRecord::Base
   has_many :suggestions
   has_many :followers
   has_many :single_investments
-  has_many :user_groups
-  has_many :groups, :through => :user_groups
+  
+  #might not need b/c of groupify
+  # has_many :user_groups
+  # has_many :groups, :through => :user_groups
  
   has_many :follower_connections, foreign_key: :following_id, class_name: 'Follow'
   has_many :followers, through: :follower_connections, source: :follower
 
   has_many :following_connections, foreign_key: :follower_id, class_name: 'Follow'
   has_many :following, through: :following_connections, source: :following
+  
+  has_many :group_requests
   
   groupify :group_member
   groupify :named_group_member
