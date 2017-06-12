@@ -2,7 +2,8 @@ module Api::V1
   class GroupsController < ApiController
     
     def create
-        group = Group.create(creator_id: current_user.id, name: group_params[:name])
+        group = Group.create(create_group_params)
+        group.add(current_user, as: 'admin')
         render json: group
     end
     
@@ -26,6 +27,9 @@ module Api::V1
     
     def group_params
         params.permit(:name, :group_id)
+    end
+    def create_group_params
+        params.permit(:name, :description)
     end
     
   end

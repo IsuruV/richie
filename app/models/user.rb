@@ -18,7 +18,8 @@ class User < ActiveRecord::Base
   has_many :following_connections, foreign_key: :follower_id, class_name: 'Follow'
   has_many :following, through: :following_connections, source: :following
   
-  # attr_accessible :name, :description, :owner_id
+  groupify :group_member
+  groupify :named_group_member
   
 
   def self.find_or_create_user_facebook(user_params)
