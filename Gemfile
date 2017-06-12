@@ -8,6 +8,8 @@ gem 'pg'
 
 gem 'faraday'
 
+gem 'active_model_serializers'
+
 # token authentication
 gem 'devise_token_auth'
 
