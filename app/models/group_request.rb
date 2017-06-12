@@ -4,12 +4,12 @@ class GroupRequest < ActiveRecord::Base
     
     default_scope { where(approved: false) }
     
-    def approve_request(request_params)
+    def approve_request(request_params, current_user)
         group_request = GroupRequest.find(request_params)
         group = group_request.group
         user = group_request.user
           
-        if check_if_group_admin(group)
+        if current_user.in_all_groups?(group, as: 'admin')
             group_request.update(approved: true)
             group.add(user, as: 'member')
             group
