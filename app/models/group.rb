@@ -3,6 +3,7 @@ class Group < ActiveRecord::Base
   
   groupify :group
   has_many :group_requests
+  has_many :messages
   
   #overiding delete cause we want to maintain all records for SEC
   def delete

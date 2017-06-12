@@ -2,6 +2,8 @@ class GroupRequest < ActiveRecord::Base
     belongs_to :user
     belongs_to :group
     
+    default_scope { where(approved: false) }
+    
     def approve_request(request_params)
         group_request = GroupRequest.find(request_params)
         group = group_request.group
