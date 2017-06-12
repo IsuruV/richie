@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users, except: [:show]
       get '/user' => 'users#show'
+      
+      resources :groups
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.
