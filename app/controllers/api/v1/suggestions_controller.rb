@@ -1,2 +1,4 @@
-class Api::V1::SuggestionsController < ApplicationController
+module Api::V1
+    class SuggestionsController < ApiController
+    end
 end

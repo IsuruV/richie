@@ -1,2 +1,4 @@
-class Api::V1::UserGroupsController < ApplicationController
+module Api::V1
+    class UserGroupsController < ApiController
+    end
 end
