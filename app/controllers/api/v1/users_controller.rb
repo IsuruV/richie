@@ -20,7 +20,7 @@ module Api::V1
     def update
     end
   
-  # private
+  private
     def user_params
       params.require(:user).permit(:fd_id, :name, :email, :age, :image)
     end

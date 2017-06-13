@@ -1,3 +1,3 @@
 # Fiduty
 
-Welcome to Fiduty. A platform for millennials to start investing.
+Welcome to Fiduty. Group investing for millennials by millennials. 
