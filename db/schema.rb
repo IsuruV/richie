@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170612210014) do
+ActiveRecord::Schema.define(version: 20170612195527) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,9 +59,9 @@ ActiveRecord::Schema.define(version: 20170612210014) do
     t.integer  "group_id"
     t.integer  "user_id"
     t.string   "message"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.boolean  "approved",   default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean  "approved"
   end
 
   create_table "groups", force: :cascade do |t|
@@ -70,7 +70,6 @@ ActiveRecord::Schema.define(version: 20170612210014) do
     t.datetime "updated_at"
     t.string   "name"
     t.string   "description"
-    t.boolean  "active",      default: true
   end
 
   create_table "individual_investments", force: :cascade do |t|
