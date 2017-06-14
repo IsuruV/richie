@@ -11,8 +11,8 @@ class User < ActiveRecord::Base
   has_many :single_investments
   
   #might not need b/c of groupify
-  # has_many :user_groups
-  # has_many :groups, :through => :user_groups
+  has_many :user_groups
+  has_many :groups, :through => :user_groups
  
   has_many :follower_connections, foreign_key: :following_id, class_name: 'Follow'
   has_many :followers, through: :follower_connections, source: :follower
@@ -37,10 +37,16 @@ class User < ActiveRecord::Base
       user
   end
   
-  def self.name_search(name)
-    regexp = /#{name}/i
-
-    result = order(:name).where("name ILIKE ?", "%#{name}%").limit(10)
-    result.sort{|x, y| (x =~ regexp) <=> (y =~ regexp) } 
+  def self.name_search(search_params)
+     name = search_params[:input]
+    
+     if !name
+        []
+     else
+      regexp = /#{name}/i
+      result = order(:name).where("name ILIKE ?", "%#{name}%").limit(10)
+      result.sort{|x, y| (x =~ regexp) <=> (y =~ regexp) }
+     end
+    
   end
 end
