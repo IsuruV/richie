@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170612195527) do
+ActiveRecord::Schema.define(version: 20170614190056) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(version: 20170612195527) do
     t.string  "routing_number"
   end
 
+  create_table "approvers", force: :cascade do |t|
+    t.integer "user_id"
+    t.string  "message"
+    t.boolean "approved"
+    t.integer "group_investment_request_id"
+  end
+
   create_table "etfs", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -30,6 +37,15 @@ ActiveRecord::Schema.define(version: 20170612195527) do
   create_table "follows", force: :cascade do |t|
     t.integer  "following_id", null: false
     t.integer  "follower_id",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "group_investment_requests", force: :cascade do |t|
+    t.integer  "requester_id"
+    t.integer  "group_id"
+    t.integer  "etf_id"
+    t.string   "description"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
@@ -59,9 +75,9 @@ ActiveRecord::Schema.define(version: 20170612195527) do
     t.integer  "group_id"
     t.integer  "user_id"
     t.string   "message"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean  "approved"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "approved",   default: false
   end
 
   create_table "groups", force: :cascade do |t|
@@ -70,6 +86,7 @@ ActiveRecord::Schema.define(version: 20170612195527) do
     t.datetime "updated_at"
     t.string   "name"
     t.string   "description"
+    t.boolean  "active",      default: true
   end
 
   create_table "individual_investments", force: :cascade do |t|

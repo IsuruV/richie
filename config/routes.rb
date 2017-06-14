@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :group_investment_requests
   mount_devise_token_auth_for 'User', at: 'auth'
   
   resources :tests
