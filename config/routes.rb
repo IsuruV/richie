@@ -9,9 +9,10 @@ Rails.application.routes.draw do
   scope module: 'api' do
     namespace :v1 do
       resources :users, except: [:show]
-      # get '/user' => 'tests#user'
+   
       get '/user' => 'users#show'
-      post '/users/search/:user_name' => 'users#search' 
+      post '/users/search/:user_name' => 'users#search'
+      
       resources :groups do 
         resources :messages
       end

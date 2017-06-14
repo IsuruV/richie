@@ -36,4 +36,11 @@ class User < ActiveRecord::Base
     end
       user
   end
+  
+  def self.name_search(name)
+    regexp = /#{name}/i
+
+    result = order(:name).where("name ILIKE ?", "%#{name}%").limit(10)
+    result.sort{|x, y| (x =~ regexp) <=> (y =~ regexp) } 
+  end
 end
