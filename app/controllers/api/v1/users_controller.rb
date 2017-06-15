@@ -11,7 +11,7 @@ module Api::V1
     end
     
     def show
-      user = User.find(find_user_params)
+      user = User.find(find_user_params[:id])
       render json: user, status: 200
     end
     

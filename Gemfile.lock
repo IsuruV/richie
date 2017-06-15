@@ -183,6 +183,8 @@ GEM
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
+    yahoo-finance (1.2.1)
+      json
 
 PLATFORMS
   ruby
@@ -204,6 +206,7 @@ DEPENDENCIES
   spring
   turbolinks
   web-console (~> 2.0)
+  yahoo-finance
 
 BUNDLED WITH
    1.14.4

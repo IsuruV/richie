@@ -31,6 +31,9 @@ gem 'rack-cors'
 ## for group associations
 gem 'groupify'
 
+##stock quotes
+gem 'yahoo-finance'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170614190056) do
+ActiveRecord::Schema.define(version: 20170615210348) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,8 +30,16 @@ ActiveRecord::Schema.define(version: 20170614190056) do
   end
 
   create_table "etfs", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "risk_level"
+    t.string   "holdings"
+    t.string   "investment_name"
+    t.string   "ticker"
+    t.string   "last_price"
+    t.string   "dividend_yield"
+    t.string   "expense_ratio"
+    t.string   "website_link"
   end
 
   create_table "follows", force: :cascade do |t|
@@ -52,9 +60,12 @@ ActiveRecord::Schema.define(version: 20170614190056) do
 
   create_table "group_investments", force: :cascade do |t|
     t.integer  "group_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.integer  "etf_id"
+    t.decimal  "bought_price"
+    t.decimal  "weight"
+    t.integer  "group_investment_request_id"
   end
 
   create_table "group_memberships", force: :cascade do |t|
