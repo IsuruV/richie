@@ -9,17 +9,16 @@ module Api::V1
         
         def approve
             investment_request = GroupInvestmentRequest.find(approve_params[:group_investment_request_id])
-            investment_request.approve(approve_params[:user_id])
+            investment_request.approve(approve_params)
             render json: investment_request
         end
-        
         
     private
         def group_investment_params
             params.permit(:group_id, :etf_id, :description).merge(requester_id: current_user.id)
         end
         def approve_params
-            params.permit(:group_investment_request_id, :user_id)
+            params.permit(:group_investment_request_id, :user_id, :approve_status)
         end
     end
 end

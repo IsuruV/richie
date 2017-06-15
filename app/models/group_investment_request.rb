@@ -10,9 +10,9 @@ class GroupInvestmentRequest < ApplicationRecord
         end
     end
     
-    def approve(user_id)
-        approved_request = self.approvers.find_by(user_id: user_id)
-        approved_request.update(approved: true)
+    def approve(approve_params)
+        approved_request = self.approvers.find_by(user_id: approve_params[:user_id])
+        approved_request.update(approved: approve_params[:approve_status])
         self.approve_confirmed
     end
     
