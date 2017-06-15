@@ -22,6 +22,8 @@ class User < ActiveRecord::Base
   
   has_many :group_requests
   
+  has_many :approvers
+  
   groupify :group_member
   groupify :named_group_member
   
