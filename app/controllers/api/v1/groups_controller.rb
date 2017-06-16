@@ -12,6 +12,21 @@ module Api::V1
         group.update(name: group_params[:name], description: group_params[:description])
         render json: group
     end
+     
+
+    def fb_friends
+        friends = current_user.get_friends_fb_ids
+        render json: friends
+    end
+    
+    ## send join group request to fb friends
+    def send_request
+        friend = User.find_by(access_token: request_params[:access_token])
+        group = Group.find_by(id: request_params[:group_id])
+        join_request = friend.group_requests.create(group_id: request_params[:group_id], 
+                                                    user_id: request_params[:user_id],
+                                                    message: "#{current_user.name} send you a request to join #{group.name}")
+    end
     
     def index
         render json: current_user.groups
@@ -34,7 +49,11 @@ module Api::V1
     end
     
     def create_group_params
-        params.permit(:name, :description)
+        params.permit(:name, :description, :public)
+    end
+    
+    def request_params
+        params.permit(:access_token, :group_id)
     end
     
   end

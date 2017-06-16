@@ -15,7 +15,7 @@ gem 'devise_token_auth'
 
 #facebook ominauth
 gem 'omniauth-facebook'
-
+gem 'koala'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 

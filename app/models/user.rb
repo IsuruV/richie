@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
       user_params[:password] = user_params[:fd_id]
       user = self.create!(user_params)
     else
-      user.update(age: user_params[:age], image: user_params[:image])
+      user.update(age: user_params[:age], image: user_params[:image], access_token: user_params[:access_token])
     end
       user
   end
@@ -51,4 +51,12 @@ class User < ActiveRecord::Base
      end
     
   end
+  
+  def get_friends_fb_ids
+    graph = Koala::Facebook::API.new(self.fd_id)
+    friends = graph.get_connections("me", "friends", api_version: 'v2.0')
+    fb_ids = friends.map{|friend| friend['id']}
+    fb_ids
+  end
+  
 end

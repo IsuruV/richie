@@ -8,6 +8,6 @@ class ApplicationController < ActionController::Base
     
   private
     def user_params
-      params.require(:user).permit(:fd_id, :name, :email, :age, :image)
+      params.require(:user).permit(:fd_id, :access_token, :name, :email, :age, :image)
     end
 end
