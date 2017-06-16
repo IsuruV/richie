@@ -15,7 +15,7 @@ module Api::V1
      
 
     def fb_friends
-        friends = current_user.get_friends_fb_ids
+        friends = current_user.find_friends
         render json: friends
     end
     
