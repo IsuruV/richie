@@ -6,8 +6,13 @@ module Api::V1
       render json: users, status: 200
     end
     
-    def show
+    def user
       render json: current_user, status: 200
+    end
+    
+    def show
+      user = User.find(find_user_params[:id])
+      render json: user, status: 200
     end
     
     def update
@@ -22,9 +27,15 @@ module Api::V1
     def user_params
       params.require(:user).permit(:fd_id, :name, :email, :age, :image)
     end
+    
     def user_search_params
       params.permit(:input)
     end
+    
+    def find_user_params
+      params.permit(:id)
+    end
+    
   end
   
 end

@@ -14,7 +14,7 @@ class GroupRequest < ActiveRecord::Base
             group.add(user, as: 'member')
             group
         else
-            'You aint an admin'
+            'You do not have admin privileges'
         end
     end
 end

@@ -22,6 +22,8 @@ class User < ActiveRecord::Base
   
   has_many :group_requests
   
+  has_many :approvers
+  
   groupify :group_member
   groupify :named_group_member
   
@@ -32,7 +34,7 @@ class User < ActiveRecord::Base
       user_params[:password] = user_params[:fd_id]
       user = self.create!(user_params)
     else
-      user.update(age: user_params[:age], image: user_params[:image])
+      user.update(age: user_params[:age], image: user_params[:image], access_token: user_params[:access_token])
     end
       user
   end
@@ -49,4 +51,16 @@ class User < ActiveRecord::Base
      end
     
   end
+  
+  def get_friends_fb_ids
+    graph = Koala::Facebook::API.new(self.access_token)
+    friends = graph.get_connections("me", "friends", api_version: 'v2.0')
+    friends.map{|friend| friend['id']}
+  end
+  
+  def find_friends
+    fb_ids = self.get_friends_fb_ids
+    User.where(access_token: [fb_ids])
+  end
+  
 end

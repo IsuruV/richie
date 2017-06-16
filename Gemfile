@@ -15,7 +15,7 @@ gem 'devise_token_auth'
 
 #facebook ominauth
 gem 'omniauth-facebook'
-
+gem 'koala'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 
@@ -30,6 +30,9 @@ gem 'rack-cors'
 
 ## for group associations
 gem 'groupify'
+
+##stock quotes
+gem 'yahoo-finance'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

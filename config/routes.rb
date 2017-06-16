@@ -10,16 +10,20 @@ Rails.application.routes.draw do
   scope module: 'api' do
     namespace :v1 do
      
-      get '/user' => 'users#show'
+      get '/user' => 'users#user'
       get '/users/search/:input' => 'users#search'
       get '/users/search' => 'users#search'
-      resources :users, except: [:show]
+      
+      post '/group_investments/approve' => 'group_investments#approve'
+      
+      resources :users
+      
+      resources :group_requests
       
       resources :groups do 
         resources :messages
       end
       
-      resources :group_requests
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.

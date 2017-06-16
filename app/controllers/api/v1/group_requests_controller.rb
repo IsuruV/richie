@@ -13,7 +13,7 @@ module Api::V1
       end
       
       def index
-          
+          render json: current_user.group_requests.where(approved: false)
       end
       
       private
