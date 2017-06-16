@@ -60,7 +60,7 @@ class User < ActiveRecord::Base
   
   def find_friends
     fb_ids = self.get_friends_fb_ids
-    User.where(access_token: [fb_ids])
+    User.where(fd_id: [fb_ids])
   end
   
 end
