@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       get '/user' => 'users#user'
       get '/users/search/:input' => 'users#search'
       get '/users/search' => 'users#search'
+      get '/users/fb_friends' => 'users#fb_friends'
       
       post '/group_investments/approve' => 'group_investments#approve'
       

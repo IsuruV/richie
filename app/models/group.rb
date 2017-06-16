@@ -1,6 +1,6 @@
 class Group < ActiveRecord::Base
   default_scope { where(active: true) }
-  
+  validates :name, :description, presence: true
   groupify :group
   has_many :group_memberships
   has_many :members, :through => :group_memberships, source_type: "User"

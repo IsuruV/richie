@@ -39,9 +39,7 @@ class User < ActiveRecord::Base
       user
   end
   
-  def self.name_search(search_params)
-     name = search_params[:input]
-    
+  def self.name_search(name)
      if !name
         []
      else
