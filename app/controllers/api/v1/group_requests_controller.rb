@@ -3,7 +3,7 @@ module Api::V1
       
       def create
           group_request = GroupRequest.create(user: current_user, group: membership_params[:group_id], 
-                                            message: membership_params[:message])
+                                            message: membership_params[:message], requested: true)
           render json: group_request
       end
       

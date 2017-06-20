@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  mount ActionCable.server => '/cable'
+  
   resources :group_investment_requests
   mount_devise_token_auth_for 'User', at: 'auth'
   
@@ -16,6 +18,8 @@ Rails.application.routes.draw do
       get '/users/fb_friends' => 'users#fb_friends'
       
       post '/group_investments/approve' => 'group_investments#approve'
+      
+      post '/groups/send_request' => 'groups#send_request'
       
       resources :users
       

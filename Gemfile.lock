@@ -149,6 +149,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rake (12.0.0)
     rdoc (4.3.0)
+    redis (3.3.3)
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
@@ -209,6 +210,7 @@ DEPENDENCIES
   pry
   rack-cors
   rails (~> 5.0.1)
+  redis
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring

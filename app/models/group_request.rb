@@ -17,4 +17,11 @@ class GroupRequest < ActiveRecord::Base
             'You do not have admin privileges'
         end
     end
+    
+    def create_request(request_params, current_user, group)
+        self.create(group_id: request_params[:group_id], 
+                                                    user_id: request_params[:user_id],
+                                                    message: "#{current_user.name} send you a request to join #{group.name}",
+                                                    requested: false)
+    end
 end

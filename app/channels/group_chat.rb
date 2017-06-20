@@ -1,21 +1,23 @@
 class GroupChatChannel < ApplicationCable::Channel
   def subscribed
-    stream_from 'messages'
+    stream_from "group_chats_#{params['group_id']}_channel"
   end
-  
-  # def subscribed
-  #   stream_from "room-#{params['classroom_id']}"
-  # end
 
   def unsubscribed
     # Any cleanup needed when channel is unsubscribed
   end
-  
-  # def speak(data) 
-  #   ActionCable.server.broadcast "messages", message: data['message'] 
-  # end
-  
-  def speak(data)
 
+  def send_message(data)
+    message = current_user.messages.new(content: data['content'], group_id: data['group_id'])
+    if message.save
+      ActionCable.server.broadcast "group_chats_#{data['group_id']}_channel",
+      group_id: message.group_id,
+      message: message,
+      user: message.user,
+      head: ok
+    end
   end
+  
 end
+
+# current_user.messages.create!(content: data['content'], group_id: data['group_id'])
