@@ -8,7 +8,7 @@ module Api::V1
       end
       
       def update
-          approval = GroupRequest.approve_request(request_params, current_user)
+          approval = GroupRequest.approve_request(request_params[:group_request_id])
           render json: approval
       end
       

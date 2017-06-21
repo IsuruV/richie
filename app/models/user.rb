@@ -10,10 +10,7 @@ class User < ActiveRecord::Base
   has_many :followers
   has_many :single_investments
   
-  #might not need b/c of groupify
-  has_many :user_groups
-  has_many :groups, :through => :user_groups
- 
+
   has_many :follower_connections, foreign_key: :following_id, class_name: 'Follow'
   has_many :followers, through: :follower_connections, source: :follower
 
@@ -24,8 +21,9 @@ class User < ActiveRecord::Base
   
   has_many :approvers
   
-  groupify :group_member
-  groupify :named_group_member
+    #might not need b/c of groupify
+  has_many :user_groups, :class_name => 'UserGroup'
+  has_many :groups, :through => :user_groups
   
 
   def self.find_or_create_user_facebook(user_params)
@@ -60,5 +58,15 @@ class User < ActiveRecord::Base
     fb_ids = self.get_friends_fb_ids
     User.where(fd_id: [fb_ids])
   end
+  
+  def create_request(group, user_id, current_user)
+        GroupRequest.create(group_id: group.id, user_id: user_id,
+                                                    message: "#{current_user.name} send you a request to join #{group.name}",
+                                                    requested: false)
+    end
+    
+    def recieved_group_requests
+      self.group_requests.where(requested: false)
+    end
   
 end

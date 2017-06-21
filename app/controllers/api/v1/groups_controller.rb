@@ -2,8 +2,7 @@ module Api::V1
   class GroupsController < ApiController
     
     def create
-        group = Group.create(create_group_params)
-        group.add(current_user, as: 'admin')
+        group = Group.create_group(create_group_params, params, current_user)
         render json: group
     end
     
