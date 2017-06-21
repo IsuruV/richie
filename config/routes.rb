@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  mount ActionCable.server => '/cable'
+  mount ActionCable.server => '/group_messages'
   
   resources :group_investment_requests
   mount_devise_token_auth_for 'User', at: 'auth'

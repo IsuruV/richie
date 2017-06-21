@@ -8,7 +8,10 @@ class GroupChatChannel < ApplicationCable::Channel
   end
 
   def send_message(data)
-    message = current_user.messages.new(content: data['content'], group_id: data['group_id'])
+    # require 'pry'; binding.pry
+    user = User.find_by(id: data['user_id'])
+    
+    message = user.messages.new(content: data['content'], group_id: data['group_id'])
     if message.save
       ActionCable.server.broadcast "group_chats_#{data['group_id']}_channel",
       group_id: message.group_id,
@@ -19,5 +22,7 @@ class GroupChatChannel < ApplicationCable::Channel
   end
   
 end
+
+
 
 # current_user.messages.create!(content: data['content'], group_id: data['group_id'])

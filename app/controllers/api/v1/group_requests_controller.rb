@@ -8,21 +8,17 @@ module Api::V1
       end
       
       def update
-          approval = GroupRequest.approve_request(request_params[:group_request_id])
+          approval = GroupRequest.approve_request(request_params[:id], request_params[:approve])
           render json: approval
       end
-      
-      def index
-          render json: current_user.group_requests.where(approved: false)
-      end
-      
+
       private
         def membership_params
             params.permit(:group_id, :message)
         end
         
         def request_params
-            params.permit(:group_request_id)
+            params.permit(:id, :approve)
         end
   end
   

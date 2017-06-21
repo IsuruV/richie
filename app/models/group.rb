@@ -20,7 +20,7 @@ class Group < ActiveRecord::Base
   end
   
   def add_member(user)
-    self.user_groups.create(user_id: user.id, memeber_type: 'member')
+    self.user_groups.create(user_id: user.id, memeber_type: 'Member')
   end
   
   def self.create_group(create_group_params, params, current_user)
@@ -38,5 +38,8 @@ class Group < ActiveRecord::Base
         group
   end
   
+  def show_messages_serializer
+    self.messages.map{ |message| {'message': message, 'user_name': message.user.name, 'user_image': message.user.image } }
+  end
   
 end

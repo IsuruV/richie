@@ -59,14 +59,27 @@ class User < ActiveRecord::Base
     User.where(fd_id: [fb_ids])
   end
   
+  def check_admin(group)
+    user_group = group.user_groups.where(memeber_type: 'Admin', user_id: self.id)
+    if user_group
+      true
+    else
+      false
+    end
+  end
+  
+  def recieved_group_requests
+      self.group_requests.where(requested: false)
+      # self.group_requests.groups.each{|group| group.user_groups.where(memeber_type: 'Admin')}
+  end
+  # def admin
+  #   self.group_requests.groups.each{|group| group.user_groups.where(memeber_type: 'Admin')}
+  # end
+    
   def create_request(group, user_id, current_user)
         GroupRequest.create(group_id: group.id, user_id: user_id,
                                                     message: "#{current_user.name} send you a request to join #{group.name}",
                                                     requested: false)
-    end
-    
-    def recieved_group_requests
-      self.group_requests.where(requested: false)
-    end
+  end
   
 end
