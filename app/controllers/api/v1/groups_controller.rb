@@ -1,9 +1,14 @@
 module Api::V1
   class GroupsController < ApiController
     
+    
     def create
         group = Group.create_group(create_group_params, params, current_user)
         render json: group
+    end
+    
+    def show
+        render json: Group.find(params[:id])
     end
     
     def update

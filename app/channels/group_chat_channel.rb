@@ -16,13 +16,8 @@ class GroupChatChannel < ApplicationCable::Channel
       ActionCable.server.broadcast "group_chats_#{data['group_id']}_channel",
       group_id: message.group_id,
       message: message,
-      user: message.user,
-      head: ok
+      user: message.user
     end
   end
   
 end
-
-
-
-# current_user.messages.create!(content: data['content'], group_id: data['group_id'])

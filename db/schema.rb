@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170621165621) do
+ActiveRecord::Schema.define(version: 20170622184137) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,9 @@ ActiveRecord::Schema.define(version: 20170621165621) do
     t.string   "dividend_yield"
     t.string   "expense_ratio"
     t.string   "website_link"
+    t.text     "description"
+    t.string   "name"
+    t.string   "fiduty_name"
   end
 
   create_table "follows", force: :cascade do |t|
