@@ -1,4 +1,4 @@
-class FacebookRichie < ApplicationRecord
+class FacebookRichie
     @@token = "EAAUKcP9seZCoBAPmdoTbWbOIAN7qfNBuUX9UZBtb6ZCGI4nE1KlVNDxklcuUCRiKq82RZC1rajqQsBn6rYH5ZB6IoREGzyTqpeJLEMux63yszevizYCB8z0KmhoignPZBN7jQUqotR1Gy7252ZB1sHbPISPvWI8yVLTAGT394IHkgZDZD"
     @@url = "https://graph.facebook.com/v2.6/me/messages?access_token=#{@@token}"
     def self.respond(user_id, input)
@@ -41,8 +41,6 @@ class FacebookRichie < ApplicationRecord
         end
     end
     
-    # 'https://fiduty-api-isuruv.c9users.io/omniauth/facebook_messenger'
-    # 'https://fiduty-api-isuruv.c9users.io/omniauth/facebook'
     
     def verify_current_user
         # "https://graph.facebook.com/v2.6/1381205945293947?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=EAADPYz6FypkBAHUaU4HQW84m1WP5tpRF4YR6pSCZC8qY4WVZAT3LCEEgIZAjQ3XMJZAh8mwKJJPw1DDZCt0zGU8bvd5ZAoeQxbJVMLzKCOx23mefQA2nI2IltXi7oE65FtsZBD5n5QzNQcoSTIsGBHwbvLFlCNaBth8vgZCmZC1XWpAZDZD"

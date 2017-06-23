@@ -10,18 +10,20 @@ class GroupInvestmentRequest < ApplicationRecord
         end
     end
     
-    def approve(approve_params)
-        approved_request = self.approvers.find_by(user_id: approve_params[:user_id])
-        approved_request.update(approved: approve_params[:approve_status])
+    def approve(user_id, approve_status)
+        approved_request = self.approvers.find_by(user_id: user_id)
+        approved_request.update(approved: approve_status)
         self.approve_confirmed
     end
     
     def approve_confirmed
         ticker = self.etf.symbol
         confirmation = self.approvers.all? { |x| x.approved == true }
+        ##once all members approve execute transaction
         if confirmation
-            self.create_investment
+           { 'investment_made': true, 'investment': self.create_investment }
         end
+           { 'investment_made': false, 'investment': self }
     end
     
     def create_investment
