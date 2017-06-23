@@ -16,6 +16,10 @@ module Api::V1
         group.update(name: group_params[:name], description: group_params[:description])
         render json: group
     end
+    
+    def suggestions
+        render json: Groupd.find(params[:id]).suggestions
+    end
      
     ## send join group request to fb friends
     def send_request

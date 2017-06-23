@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170622184137) do
+ActiveRecord::Schema.define(version: 20170623195444) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20170622184137) do
     t.string  "message"
     t.boolean "approved"
     t.integer "group_investment_request_id"
+    t.decimal "amount"
   end
 
   create_table "etfs", force: :cascade do |t|
@@ -69,6 +70,7 @@ ActiveRecord::Schema.define(version: 20170622184137) do
     t.decimal  "bought_price"
     t.decimal  "weight"
     t.integer  "group_investment_request_id"
+    t.decimal  "group_amount"
   end
 
   create_table "group_memberships", force: :cascade do |t|

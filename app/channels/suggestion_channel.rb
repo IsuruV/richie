@@ -12,7 +12,7 @@ class SuggestionChatChannel < ApplicationCable::Channel
     group = Group.find_by(id: data['group_id'])
     etf_price = YahooApi.fetch_price(data['etf'])
     investment_request = GroupInvestmentRequest.create(requester: user, group_id: data['group_id'], etf_id: data['etf_id'])
-    investment_request.create_approvers(group)
+    investment_request.create_approvers(group, user)
     
     ActionCable.server.broadcast "group_suggestion_#{data['group_id']}_channel",
       investment_request: investment_request,
@@ -33,11 +33,12 @@ class SuggestionChatChannel < ApplicationCable::Channel
     investment_request = GroupInvestmentRequest.find_by(id: data['group_investment_request_id'])
     investment_request.approve(data['user_id'], data['approve_status'])
   
-   ActionCable.server.broadcast "group_suggestion_#{data['group_id']}_channel",
+    ActionCable.server.broadcast "group_suggestion_#{data['group_id']}_channel",
       investment_request: investment_request
       
   end
   
+
 end
 
 
