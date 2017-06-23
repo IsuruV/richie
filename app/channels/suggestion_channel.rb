@@ -39,6 +39,10 @@ class SuggestionChatChannel < ApplicationCable::Channel
       
   end
   
-
+  private
+    def group_params
+      params.permit(:group_id)
+    end
+    
 end
 
