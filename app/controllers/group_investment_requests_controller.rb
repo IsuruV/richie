@@ -1,2 +1,0 @@
-class GroupInvestmentRequestsController < ApplicationController
-end

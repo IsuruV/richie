@@ -1,10 +1,14 @@
 module Api::V1
   class GroupsController < ApiController
     
+    
     def create
-        group = Group.create(create_group_params)
-        group.add(current_user, as: 'admin')
+        group = Group.create_group(create_group_params, params, current_user)
         render json: group
+    end
+    
+    def show
+        render json: Group.find(params[:id])
     end
     
     def update
@@ -13,19 +17,16 @@ module Api::V1
         render json: group
     end
      
-
-    def fb_friends
-        friends = current_user.find_friends
-        render json: friends
-    end
-    
     ## send join group request to fb friends
     def send_request
-        friend = User.find_by(access_token: request_params[:access_token])
+        user_tokens = request_params[:access_tokens]
         group = Group.find_by(id: request_params[:group_id])
-        join_request = friend.group_requests.create(group_id: request_params[:group_id], 
-                                                    user_id: request_params[:user_id],
-                                                    message: "#{current_user.name} send you a request to join #{group.name}")
+        join_requests = []
+        user_tokens.each do |token|
+            friend = User.find_by(access_token: token)
+            join_requests << friend.group_requests.create_request(request_params, current_user, group)
+        end
+        render json: join_requests
     end
     
     def index
@@ -53,7 +54,7 @@ module Api::V1
     end
     
     def request_params
-        params.permit(:access_token, :group_id)
+        params.permit(:access_tokens, :group_id)
     end
     
   end

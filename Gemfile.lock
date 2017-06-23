@@ -120,6 +120,7 @@ GEM
       method_source (~> 0.8.1)
       slop (~> 3.4)
     public_suffix (2.0.5)
+    puma (3.9.1)
     rack (2.0.3)
     rack-cors (0.4.1)
     rack-test (0.6.3)
@@ -149,6 +150,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rake (12.0.0)
     rdoc (4.3.0)
+    redis (3.3.3)
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
@@ -207,8 +209,10 @@ DEPENDENCIES
   omniauth-facebook
   pg
   pry
+  puma
   rack-cors
   rails (~> 5.0.1)
+  redis
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring

@@ -2,7 +2,8 @@ module Api::V1
   class UsersController < ApiController
   
     def search
-      users = User.name_search(user_search_params)
+      name = user_search_params[:input]
+      users = User.name_search(name)
       render json: users, status: 200
     end
     
@@ -21,8 +22,7 @@ module Api::V1
     def index
       render json: User.all
     end
-  
-  
+
   private
     def user_params
       params.require(:user).permit(:fd_id, :name, :email, :age, :image)
