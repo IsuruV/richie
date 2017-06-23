@@ -25,6 +25,8 @@ Rails.application.routes.draw do
       
       resources :group_requests
       
+      resources :etfs
+      
       resources :groups do 
         resources :messages
       end

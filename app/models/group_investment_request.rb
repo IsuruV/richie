@@ -4,22 +4,21 @@ class GroupInvestmentRequest < ApplicationRecord
     has_many :approvers
     has_one :group_investment
     
-    def create_approvers(group, user)
+    def create_approvers(group, user, amount)
         group.members.each do |group_member|
             self.approvers.create(user_id: group_member.id, approved: false)
         end
-        self.self_approve(user)
+        self.self_approve(user, amount, group)
     end
     
-    def self_approve(user, amount)
+    def self_approve(user, amount, group)
         # the user that created the request automatically should be approved
-        approval = self.approvers.find_by(user: user)
+        approval = self.approvers.find_by(user: user, group: group)
         approval.update(approved: true, amount: amount)
     end
     
     def check_amount
         ## each member can not invest double the highest amount invested
-        
     end
     
     def total_approval_amount

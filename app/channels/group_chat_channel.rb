@@ -8,7 +8,7 @@ class GroupChatChannel < ApplicationCable::Channel
   end
 
   def send_message(data)
-    user = User.find_by(id: data['user_id'])
+    user = current_user
     
     message = user.messages.new(content: data['content'], group_id: data['group_id'])
     if message.save
@@ -20,7 +20,7 @@ class GroupChatChannel < ApplicationCable::Channel
   end
   
   def online(data)
-    user = User.find_by(id: data['user_id'])
+    user = current_user
     
     ActionCable.server.broadcast "group_chats_#{data['group_id']}_channel",
     user: user

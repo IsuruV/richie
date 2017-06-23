@@ -16,4 +16,6 @@ class UserSerializer < ActiveModel::Serializer
     object.recieved_group_requests
   end
   
+
+  
 end
