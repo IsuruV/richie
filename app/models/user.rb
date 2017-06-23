@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
       user_params[:password] = user_params[:fd_id]
       user = self.create!(user_params)
     else
-      user.update(age: user_params[:age], image: user_params[:image], access_token: user_params[:access_token])
+      user.update(age: user_params[:age], image: user_params[:image], access_token: user_params[:access_token], email: user_params[:email])
     end
       user
   end

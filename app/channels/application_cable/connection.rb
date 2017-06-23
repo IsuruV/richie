@@ -15,10 +15,10 @@ module ApplicationCable
     end
  
     protected
+      # this checks whether a user is authenticated with devise
+        def find_verified_user(token, uid, client_id)
 
-        def find_verified_user(token, uid, client_id) # this checks whether a user is authenticated with devise
-
-            user = User.find_by email: uid
+            user = User.find_by(email: uid)
             if user && user.valid_token?(token, client_id)
                 user
             else
