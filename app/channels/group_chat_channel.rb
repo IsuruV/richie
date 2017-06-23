@@ -1,6 +1,6 @@
 class GroupChatChannel < ApplicationCable::Channel
   def subscribed
-    stream_from "group_chats_#{params['group_id']}_channel"
+    stream_from "group_chats_#{group_params}_channel"
   end
 
   def unsubscribed
@@ -8,9 +8,9 @@ class GroupChatChannel < ApplicationCable::Channel
   end
 
   def send_message(data)
-    user = current_user
     
-    message = user.messages.new(content: data['content'], group_id: data['group_id'])
+    message = current_user.messages.new(content: data['content'], group_id: data['group_id'])
+    
     if message.save
       ActionCable.server.broadcast "group_chats_#{data['group_id']}_channel",
       group_id: message.group_id,
@@ -20,10 +20,14 @@ class GroupChatChannel < ApplicationCable::Channel
   end
   
   def online(data)
-    user = current_user
     
     ActionCable.server.broadcast "group_chats_#{data['group_id']}_channel",
-    user: user
+    user: current_user
   end
+  
+  private
+    def group_params
+      params.permit(:group_id)
+    end
   
 end
