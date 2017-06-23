@@ -8,11 +8,11 @@ class SuggestionChatChannel < ApplicationCable::Channel
   end
 
   def send_suggestion(data)
-    user = User.find_by(id: data['user_id'])
+    user = current_user
     group = Group.find_by(id: data['group_id'])
-    etf_price = YahooApi.fetch_price(data['etf'])
+    etf_price = YahooApi.fetch_price(data['etf_symbol'])
     investment_request = GroupInvestmentRequest.create(requester: user, group_id: data['group_id'], etf_id: data['etf_id'])
-    investment_request.create_approvers(group, user)
+    investment_request.create_approvers(group, user, data['amount'])
     
     ActionCable.server.broadcast "group_suggestion_#{data['group_id']}_channel",
       investment_request: investment_request,
@@ -21,9 +21,10 @@ class SuggestionChatChannel < ApplicationCable::Channel
   end
   
   def delete_suggestion(data)
-    user = User.find_by(id: data['user_id'])
+    user = current_user
     investment_request = GroupInvestmentRequest.find_by(id: data['group_investment_request_id'])
     investment_request.delete
+    
     ActionCable.server.broadcast "group_suggestion_#{data['group_id']}_channel",
       deleted_investment_request: investment_request
     
@@ -41,14 +42,3 @@ class SuggestionChatChannel < ApplicationCable::Channel
 
 end
 
-
-    # user = User.find_by(id: data['user_id'])
-    # suggestion = user.suggestions.new(etf_id: data['etf_id'], group_id: data['group_id'])
-    # etf_price = YahooApi.fetch_price(suggestion.etf.ticker)
-    # if suggestion.save
-    #   ActionCable.server.broadcast "group_chats_#{data['group_id']}_channel",
-    #   group_id: suggestion.group_id,
-    #   etf: suggestion.etf,
-    #   last_price: etf_price,
-    #   user: suggestion.user
-    # end

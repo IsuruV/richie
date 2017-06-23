@@ -49,12 +49,16 @@ class User < ActiveRecord::Base
   end
   
   def get_friends_fb_ids
-    begin
-      graph = Koala::Facebook::API.new(self.access_token)
-      friends = graph.get_connections("me", "friends", api_version: 'v2.0')
-      friends.map{|friend| friend['id']}
-    rescue
-        []
+    if self.access_token
+     begin
+        graph = Koala::Facebook::API.new(self.access_token)
+        friends = graph.get_connections("me", "friends", api_version: 'v2.0')
+        friends.map{|friend| friend['id']}
+     rescue
+          []
+      end
+   else
+      []
     end
   end
   
@@ -68,8 +72,8 @@ class User < ActiveRecord::Base
   end
   
   def check_admin(group)
-    user_group = group.user_groups.where(memeber_type: 'Admin', user_id: self.id)
-    if user_group
+    user_group = group.user_groups.find_by(memeber_type: 'Admin', user_id: self.id)
+    if user_group 
       true
     else
       false
@@ -89,5 +93,6 @@ class User < ActiveRecord::Base
                                                     message: "#{current_user.name} send you a request to join #{group.name}",
                                                     requested: false)
   end
+  
   
 end
