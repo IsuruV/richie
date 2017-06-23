@@ -49,14 +49,22 @@ class User < ActiveRecord::Base
   end
   
   def get_friends_fb_ids
-    graph = Koala::Facebook::API.new(self.access_token)
-    friends = graph.get_connections("me", "friends", api_version: 'v2.0')
-    friends.map{|friend| friend['id']}
+    begin
+      graph = Koala::Facebook::API.new(self.access_token)
+      friends = graph.get_connections("me", "friends", api_version: 'v2.0')
+      friends.map{|friend| friend['id']}
+    rescue
+        []
+    end
   end
   
   def find_friends
-    fb_ids = self.get_friends_fb_ids
-    User.where(fd_id: [fb_ids])
+    begin
+      fb_ids = self.get_friends_fb_ids
+      User.where(fd_id: [fb_ids])
+    rescue
+      []
+    end
   end
   
   def check_admin(group)
