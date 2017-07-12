@@ -1,6 +1,6 @@
 class GroupChatChannel < ApplicationCable::Channel
   def subscribed
-    stream_from "group_chats_#{group_params}_channel"
+    stream_from "group_chats_#{params['group_id']}_channel"
   end
 
   def unsubscribed
@@ -24,10 +24,5 @@ class GroupChatChannel < ApplicationCable::Channel
     ActionCable.server.broadcast "group_chats_#{data['group_id']}_channel",
     user: current_user
   end
-  
-  private
-    def group_params
-      params.permit(:group_id)
-    end
   
 end

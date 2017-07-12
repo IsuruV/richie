@@ -1,6 +1,6 @@
 class UserSerializer < ActiveModel::Serializer
   attributes :id, :image, :name, :first_name, :last_name, :email, :phone, :occupation, :age,
-             :fb_friends, :recieved_group_requests
+             :fb_friends, :recieved_group_requests, :amount
   
   has_many :followers, through: :follower_connections, source: :follower
   has_many :following, through: :following_connections, source: :following
@@ -14,6 +14,10 @@ class UserSerializer < ActiveModel::Serializer
   
   def recieved_group_requests
     object.recieved_group_requests
+  end
+  
+  def amount
+    object.amount_serialize
   end
   
 

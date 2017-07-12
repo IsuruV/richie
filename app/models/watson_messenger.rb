@@ -17,6 +17,5 @@ class WatsonMessenger
       end
       response = JSON.parse(resp.body)
       response['output']['text'][0]
-    end 
-    
+    end
 end

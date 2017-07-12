@@ -49,17 +49,14 @@ class User < ActiveRecord::Base
   end
   
   def get_friends_fb_ids
-    if self.access_token
      begin
+  
         graph = Koala::Facebook::API.new(self.access_token)
         friends = graph.get_connections("me", "friends", api_version: 'v2.0')
         friends.map{|friend| friend['id']}
      rescue
           []
       end
-   else
-      []
-    end
   end
   
   def find_friends
@@ -88,11 +85,14 @@ class User < ActiveRecord::Base
   #   self.group_requests.groups.each{|group| group.user_groups.where(memeber_type: 'Admin')}
   # end
     
-  def create_request(group, user_id, current_user)
+  def create_request(group, user_id, current_user, minimum_amount)
         GroupRequest.create(group_id: group.id, user_id: user_id,
                                                     message: "#{current_user.name} send you a request to join #{group.name}",
-                                                    requested: false)
+                                                    requested: false, minimum_amount: minimum_amount )
   end
   
+  def amount_serialize
+    self.amount.to_i
+  end
   
 end
