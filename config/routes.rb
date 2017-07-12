@@ -17,12 +17,15 @@ Rails.application.routes.draw do
       get '/users/search' => 'users#search'
       get '/users/fb_friends' => 'users#fb_friends'
       
+      post '/groups/create_suggestion' => 'groups#create_suggestion'
+      
       post '/group_investments/approve' => 'group_investments#approve'
       
-      post '/groups/send_request' => 'groups#send_request'
+      post '/suggestions' => 'suggestions#create'
+  
       
       resources :users
-      
+      # resources :suggestions
       resources :group_requests
       
       resources :etfs

@@ -28,3 +28,50 @@
 # Etf.find_or_create_by(ticker: 'KXI', name: 'iShares S&P Global Consumer Staples ETF', fiduty_name: 'Consumer Staples', description: 'Even if the economy were to turn south, there would still be items that people needed to buy, items that keep them alive. This fund revolves mainly around food companies, plus household items and tobacco companies.')
 # Etf.find_or_create_by(ticker: 'XLK', name: 'Technology Select Sector SPDR® ETF', fiduty_name: 'Information Technology', description: 'Technology has rapidly transformed the US economy, and that transformation is still in media res, altering the ways that we interact with each other and with the world. In this fund, Apple, Alphabet, Microsoft, and Facebook reign supreme.')
 # Etf.find_or_create_by(ticker: 'DIA', name: 'SPDR Dow Jones Industrial Average ETF Trust', fiduty_name: 'Dow Jones Index', description: 'This is it, the big one. Made up of thirty companies known for their long-term health, the Dow Jones Index sets the standard upon which the rest of the economic forecast is based. To be in the middle of things, this is the right choice. ')
+
+
+## questions
+question1 = Question.find_or_create_by(question: "What is you goal of investing?")
+choice1 = Choice.create(question: question1, choice: 'General Savings')
+choice2 = Choice.create(question: question1, choice: 'Retirement')
+choice3 = Choice.create(question: question1, choice: 'Beating the market')
+choice4 = Choice.create(question: question1, choice: 'Other')
+
+question2 = Question.find_or_create_by(question: "In how many years you will most likely start needing the money that you have invested?")
+choice1 = Choice.create(question: question2, choice: 'Less than 3 years')
+choice2 = Choice.create(question: question2, choice: 'Between 3 to 5 years')
+choice3 = Choice.create(question: question2, choice: '5 to 10 years')
+choice4 = Choice.create(question: question2, choice: 'More than 10 years')
+
+question3 = Question.find_or_create_by(question: "What is your age?")
+
+question4 = Question.find_or_create_by(question: "What is your annual income?")
+
+question5 = Question.find_or_create_by(question: "Household description")
+choice1 = Choice.create(question: question5, choice: 'Single income, no dependents')
+choice2 = Choice.create(question: question5, choice: 'Single income, more than 1 dependent')
+choice3 = Choice.create(question: question5, choice: 'Dual income, no dependents')
+choice4 = Choice.create(question: question5, choice: 'Dual income, more than 1 dependent')
+choice4 = Choice.create(question: question5, choice: 'Financially independent')
+
+question6 = Question.find_or_create_by(question: "Total amount of cash and liquid investments")
+
+question7 = Question.find_or_create_by(question: "When deciding how to invest your money, which do you care the most?")
+choice1 = Choice.create(question: question7, choice: 'Maximize gains')
+choice2 = Choice.create(question: question7, choice: 'Minimize losses')
+choice3 = Choice.create(question: question7, choice: 'Both equally')
+
+
+question8 = Question.find_or_create_by(question: "If market swings a lot and if you lose 10% of your investments, what would you do?")
+choice1 = Choice.create(question: question8, choice: 'Sell all your investments')
+choice2 = Choice.create(question: question8, choice: 'Keep all')
+choice3 = Choice.create(question: question8, choice: 'Buy more')
+
+question9 = Question.find_or_create_by(question: "How long do you plan to keep your money")
+
+question9 = Question.find_or_create_by(question: "How long do you plan to keep your money")
+
+question9 = Question.find_or_create_by(question: "How long do you plan to keep your money")
+
+
+

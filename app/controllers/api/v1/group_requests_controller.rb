@@ -8,7 +8,8 @@ module Api::V1
       end
       
       def update
-          approval = GroupRequest.approve_request(request_params[:id], request_params[:approve])
+        minimum = request_params[:minimum].to_i
+          approval = GroupRequest.approve_request(request_params[:id], request_params[:approve], minimum)
           render json: approval
       end
 

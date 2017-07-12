@@ -47,6 +47,14 @@ module Api::V1
         end
     end
     
+    def create_suggestion
+        group = Group.find_by(id: params['group_id'])
+        etf_price = YahooApi.fetch_price(params['ticker'])[:last_trade_price]
+         investment_request = GroupInvestmentRequest.create(requester: current_user, group_id: params['group_id'], etf_id: params['etf_id'])
+         investment_request.create_approvers(group, current_user, params['amount'])
+           render json: investment_request
+    end
+    
     private
     
     def group_params
@@ -54,11 +62,15 @@ module Api::V1
     end
     
     def create_group_params
-        params.permit(:name, :description, :public)
+        params.permit(:name, :description, :minimum_amount, :public)
     end
     
     def request_params
         params.permit(:access_tokens, :group_id)
+    end
+    
+    def suggestion_params
+        params.permit(:suggestion)
     end
     
   end

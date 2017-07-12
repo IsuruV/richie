@@ -3,9 +3,18 @@ class GroupInvestmentRequest < ApplicationRecord
     has_one :etf
     has_many :approvers
     has_one :group_investment
+    belongs_to :group
+   
+    def etf
+        Etf.all.find(self.etf_id)
+    end
+    
+    def requester_serializer
+        User.find(self.requester_id)
+    end
     
     def create_approvers(group, user, amount)
-        group.members.each do |group_member|
+        group.users.each do |group_member|
             self.approvers.create(user_id: group_member.id, approved: false)
         end
         self.self_approve(user, amount, group)
@@ -13,7 +22,7 @@ class GroupInvestmentRequest < ApplicationRecord
     
     def self_approve(user, amount, group)
         # the user that created the request automatically should be approved
-        approval = self.approvers.find_by(user: user, group: group)
+        approval = self.approvers.find_by(user: user)
         approval.update(approved: true, amount: amount)
     end
     
@@ -45,6 +54,10 @@ class GroupInvestmentRequest < ApplicationRecord
     def create_investment
         price = YahooApi.fetch_price(self.etf.symbol)
         self.group_investment.create(group_id: self.group_id, etf_id: self.etf_id, bought_price: price, group_amount: self.total_approval_amount)
+    end
+    
+    def manual_serialize
+        { 'id': self.id, 'etf': self.etf, 'group': self.group, 'description': self.description, 'requester': self.requester, 'amount': self.approvers.where('amount > 0').first.amount.to_i, 'approvers': self.approvers }
     end
     
 end

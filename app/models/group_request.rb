@@ -4,12 +4,14 @@ class GroupRequest < ActiveRecord::Base
     
     default_scope { where(approved: false) }
     
-    def self.approve_request(request_id, approved)
+    def self.approve_request(request_id, approved, minimum)
         group_request = self.find_by(id: request_id)
         if approved
             group_request.approve_single_request
             group = group_request.group
             user = group_request.user
+            user.amount = user.amount - minimum
+            user.save
             group.add_member(user)
         else
             group_request.disapprove_single_request
