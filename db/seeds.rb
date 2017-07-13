@@ -31,47 +31,62 @@
 
 
 ## questions
-question1 = Question.find_or_create_by(question: "What is you goal of investing?")
-choice1 = Choice.create(question: question1, choice: 'General Savings')
-choice2 = Choice.create(question: question1, choice: 'Retirement')
-choice3 = Choice.create(question: question1, choice: 'Beating the market')
-choice4 = Choice.create(question: question1, choice: 'Other')
+# question1 = Question.find_or_create_by(question: "What is you goal of investing?")
+# choice1 = Choice.create(question: question1, choice: 'General Savings')
+# choice2 = Choice.create(question: question1, choice: 'Retirement')
+# choice3 = Choice.create(question: question1, choice: 'Beating the market')
+# choice4 = Choice.create(question: question1, choice: 'Other')
+# question1.choices.push(choice1)
+# question1.choices.push(choice2)
+# question1.choices.push(choice3)
+# question1.choices.push(choice4)
 
-question2 = Question.find_or_create_by(question: "In how many years you will most likely start needing the money that you have invested?")
-choice1 = Choice.create(question: question2, choice: 'Less than 3 years')
-choice2 = Choice.create(question: question2, choice: 'Between 3 to 5 years')
-choice3 = Choice.create(question: question2, choice: '5 to 10 years')
-choice4 = Choice.create(question: question2, choice: 'More than 10 years')
+# question2 = Question.find_or_create_by(question: "In how many years you will most likely start needing the money that you have invested?")
+# choice1 = Choice.create(question: question2, choice: 'Less than 3 years')
+# choice2 = Choice.create(question: question2, choice: 'Between 3 to 5 years')
+# choice3 = Choice.create(question: question2, choice: '5 to 10 years')
+# choice4 = Choice.create(question: question2, choice: 'More than 10 years')
+# question2.choices.push(choice1)
+# question2.choices.push(choice2)
+# question2.choices.push(choice3)
+# question2.choices.push(choice4)
 
-question3 = Question.find_or_create_by(question: "What is your age?")
+# question3 = Question.find_or_create_by(question: "What is your age?")
 
-question4 = Question.find_or_create_by(question: "What is your annual income?")
+# question4 = Question.find_or_create_by(question: "What is your annual income?")
 
-question5 = Question.find_or_create_by(question: "Household description")
-choice1 = Choice.create(question: question5, choice: 'Single income, no dependents')
-choice2 = Choice.create(question: question5, choice: 'Single income, more than 1 dependent')
-choice3 = Choice.create(question: question5, choice: 'Dual income, no dependents')
-choice4 = Choice.create(question: question5, choice: 'Dual income, more than 1 dependent')
-choice4 = Choice.create(question: question5, choice: 'Financially independent')
+# question5 = Question.find_or_create_by(question: "Household description")
+# choice1 = Choice.create(question: question5, choice: 'Single income, no dependents')
+# choice2 = Choice.create(question: question5, choice: 'Single income, more than 1 dependent')
+# choice3 = Choice.create(question: question5, choice: 'Dual income, no dependents')
+# choice4 = Choice.create(question: question5, choice: 'Dual income, more than 1 dependent')
+# choice4 = Choice.create(question: question5, choice: 'Financially independent')
+# question5.choices.push(choice1)
+# question5.choices.push(choice2)
+# question5.choices.push(choice3)
+# question5.choices.push(choice4)
 
-question6 = Question.find_or_create_by(question: "Total amount of cash and liquid investments")
+# question6 = Question.find_or_create_by(question: "Total amount of cash and liquid investments")
 
-question7 = Question.find_or_create_by(question: "When deciding how to invest your money, which do you care the most?")
-choice1 = Choice.create(question: question7, choice: 'Maximize gains')
-choice2 = Choice.create(question: question7, choice: 'Minimize losses')
-choice3 = Choice.create(question: question7, choice: 'Both equally')
+# question7 = Question.find_or_create_by(question: "When deciding how to invest your money, which do you care the most?")
+# choice1 = Choice.create(question: question7, choice: 'Maximize gains')
+# choice2 = Choice.create(question: question7, choice: 'Minimize losses')
+# choice3 = Choice.create(question: question7, choice: 'Both equally')
+# question7.choices.push(choice1)
+# question7.choices.push(choice2)
 
 
-question8 = Question.find_or_create_by(question: "If market swings a lot and if you lose 10% of your investments, what would you do?")
-choice1 = Choice.create(question: question8, choice: 'Sell all your investments')
-choice2 = Choice.create(question: question8, choice: 'Keep all')
-choice3 = Choice.create(question: question8, choice: 'Buy more')
 
-question9 = Question.find_or_create_by(question: "How long do you plan to keep your money")
+# question8 = Question.find_or_create_by(question: "If market swings a lot and if you lose 10% of your investments, what would you do?")
+# choice1 = Choice.create(question: question8, choice: 'Sell all your investments')
+# choice2 = Choice.create(question: question8, choice: 'Keep all')
+# choice3 = Choice.create(question: question8, choice: 'Buy more')
+# question8.choices.push(choice1)
+# question8.choices.push(choice2)
+# question8.choices.push(choice3)
 
-question9 = Question.find_or_create_by(question: "How long do you plan to keep your money")
+# question9 = Question.find_or_create_by(question: "How long do you plan to keep your money")
 
-question9 = Question.find_or_create_by(question: "How long do you plan to keep your money")
 
 
 

@@ -10,6 +10,10 @@ class User < ActiveRecord::Base
   has_many :followers
   has_many :single_investments
   
+  has_many :user_choice_questions
+  has_many :questions, :through => :user_choice_questions
+  has_many :choices, :through => :user_choice_questions
+  
 
   has_many :follower_connections, foreign_key: :following_id, class_name: 'Follow'
   has_many :followers, through: :follower_connections, source: :follower
