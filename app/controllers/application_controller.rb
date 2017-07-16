@@ -6,8 +6,17 @@ class ApplicationController < ActionController::Base
        render json: { status: 200, user: user }
     end
     
+    def create_email
+      user = User.find_or_create_by(user_params_email)
+      render json: { status : 200, user: user }
+    end
+    
   private
     def user_params
       params.require(:user).permit(:fd_id, :access_token, :name, :email, :age, :image)
+    end
+    
+    def user_params_email
+      params.require(:user).permit(:name, :email, :age)
     end
 end
